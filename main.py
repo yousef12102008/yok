@@ -43,9 +43,6 @@ def main(message):
         with open("combo.txt", 'r') as file:
             lino = file.readlines()
             total = len(lino)
-            if total > 500:
-                bot.reply_to(message, "You have exceeded the limit of 500 cards. You will be banned.")
-                return
             for cc in lino:
                 current_dir = os.getcwd()
                 for filename in os.listdir(current_dir):
