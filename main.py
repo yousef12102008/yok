@@ -127,4 +127,4 @@ def menu_callback(call):
         pass
 
 print("تم تشغيل البوت")
-bot.polling()
+bot.infinity_polling()
