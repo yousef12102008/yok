@@ -1,7 +1,7 @@
 import requests
 import telebot, time
 from telebot import types
-from gatet import Tele
+from mk import Tele
 import os
 
 token = '6848019028:AAGDVZ4MIlMKOL0pRjtjMOadz4qkf9cqarU'
@@ -109,7 +109,7 @@ def main(message):
                     bot.reply_to(message, msg)
                 else:
                     dd += 1
-                time.sleep(21)
+                time.sleep(5)
     except Exception as e:
         print(e)
     bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='𝗕𝗘𝗘𝗡 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗘𝗗 ✅\n𝗕𝗢𝗧 𝗕𝗬 ➜ @Af5AA')
