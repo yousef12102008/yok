@@ -18,12 +18,7 @@ def start(message):
         return
     bot.reply_to(message, "Send the file now \n ارسل الملف الان")
 
-@bot.message_handler(commands=["stop"])
-def stop(message):
-    if message.chat.id in allowed_ids:
-        with open("stop.stop", "w") as file:
-            pass
-        bot.reply_to(message, "The bot has been stopped. ✅")
+
 
 @bot.message_handler(content_types=["document"])
 def main(message):
