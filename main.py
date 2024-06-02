@@ -1,7 +1,7 @@
 import requests
 import telebot, time
 from telebot import types
-from mk import Tele
+from gatet import Tele
 import os
 
 token = '6848019028:AAGDVZ4MIlMKOL0pRjtjMOadz4qkf9cqarU'
@@ -91,14 +91,18 @@ def main(message):
                 mes.add(cm1, status, cm3, cm4, cm5, stop)
                 bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='''Wait for processing 
 𝒃𝒚 ➜ @Af5AA ''', reply_markup=mes)
-                msg = f''' 𝐂𝐚𝐫𝐝 ➜ {cc} 
-_   𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅
-◆ 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 ➜ Braintree Auth
+                msg = f'''◆ 𝑪𝑨𝑹𝑫  ➜ {cc} 
+◆ 𝑺𝑻𝑨𝑻𝑼𝑺 ➜ 𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱  ✅ 
+◆ 𝑹𝑬𝑺𝑼𝑳𝑻 ➜ #Approved
+◆ 𝑮𝑨𝑻𝑬𝑾𝑨𝒀 ➜ 𝙱𝚁𝙰𝙸𝙽𝚃𝚁𝙴𝙴 𝙰𝚄𝚃𝙷 
 ━━━━━━━━━━━━━━━━━
-◆ 𝐁𝐈𝐍 ➜ {cc[:6]} - {dicr} - {typ} 
-◆ 𝐂𝐨𝐮𝐧𝐭𝐫𝐲 ➜ {cn} - {emj} 
-◆ 𝐁𝐚𝐧𝐤 ➜ {bank} 
+◆ 𝑩𝑰𝑵 ➜ {cc[:6]} - {dicr} - {typ} 
+◆ 𝑪𝑶𝑼𝑵𝑻𝑹𝒀 ➜ {cn} - {emj} 
+◆ 𝑩𝑨𝑵𝑲 ➜ {bank}
+◆ 𝑼𝑹𝑳 ➜ {url}
+━━━━━━━━━━━━━━━━━
 ◆ 𝑩𝒀: @Af5AA
+◆𝑷𝑹𝑶𝑿𝒀𝑺: 𝑷𝑹𝑶𝑿𝒀 𝑳𝑰𝑽𝑬 ✅ '''
                 print(last)
                 if "live" in last or 'Approved' in last:
                     live += 1
