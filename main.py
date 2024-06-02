@@ -121,10 +121,7 @@ def main(message):
         print(e)
     bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='𝗕𝗘𝗘𝗡 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗘𝗗 ✅\n𝗕𝗢𝗧 𝗕𝗬 ➜ @Af5AA')
 
-@bot.callback_query_handler(func=lambda call: call.data == 'stop')
-def menu_callback(call):
-    with open("stop.stop", "w") as file:
-        pass
+
 
 print("تم تشغيل البوت")
 bot.infinity_polling()
