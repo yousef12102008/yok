@@ -9,15 +9,17 @@ def Tele(ccx):
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
 	r = requests.session()
-	import requests
 	
+	
+
+
 
 
 	headers = {
     'authority': 'payments.braintree-api.com',
     'accept': '*/*',
     'accept-language': 'ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7',
-    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjIwMTgwNDI2MTYtcHJvZHVjdGlvbiIsImlzcyI6Imh0dHBzOi8vYXBpLmJyYWludHJlZWdhdGV3YXkuY29tIn0.eyJleHAiOjE3MTcyNjI1MjMsImp0aSI6IjM3NGQ4Mjk3LWRiMDQtNDIxYy05M2FhLWRhMjAxNjRiMWRhNCIsInN1YiI6ImpzYnFoNzdoYjNqMzVtd20iLCJpc3MiOiJodHRwczovL2FwaS5icmFpbnRyZWVnYXRld2F5LmNvbSIsIm1lcmNoYW50Ijp7InB1YmxpY19pZCI6ImpzYnFoNzdoYjNqMzVtd20iLCJ2ZXJpZnlfY2FyZF9ieV9kZWZhdWx0Ijp0cnVlfSwicmlnaHRzIjpbIm1hbmFnZV92YXVsdCJdLCJzY29wZSI6WyJCcmFpbnRyZWU6VmF1bHQiXSwib3B0aW9ucyI6e319._HzcGCHDleZ45Ch_Dzeaf6NUXuzmXJSyoki8XIgIYaturEeDFPj0rBgCBZ4S9SE6_zlynEv7Ucx-ihWCtyuxGQ',
+    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjIwMTgwNDI2MTYtcHJvZHVjdGlvbiIsImlzcyI6Imh0dHBzOi8vYXBpLmJyYWludHJlZWdhdGV3YXkuY29tIn0.eyJleHAiOjE3MTc0MjExMzIsImp0aSI6ImM3MTMwOTZjLTU0ZDYtNGNlNi05NzcyLTZjZmM4NDI1ZDUyOSIsInN1YiI6ImpzYnFoNzdoYjNqMzVtd20iLCJpc3MiOiJodHRwczovL2FwaS5icmFpbnRyZWVnYXRld2F5LmNvbSIsIm1lcmNoYW50Ijp7InB1YmxpY19pZCI6ImpzYnFoNzdoYjNqMzVtd20iLCJ2ZXJpZnlfY2FyZF9ieV9kZWZhdWx0Ijp0cnVlfSwicmlnaHRzIjpbIm1hbmFnZV92YXVsdCJdLCJzY29wZSI6WyJCcmFpbnRyZWU6VmF1bHQiXSwib3B0aW9ucyI6e319.kYlTti_ypuIQfrCH0Jv6Ng7_-dCH3iafkvkyidfrnzWkTjdCaaOxxwz9g-tKR1esULBRkgknHQvxvnDlBZpcwQ',
     'braintree-version': '2018-05-10',
     'cache-control': 'no-cache',
     'content-type': 'application/json',
@@ -57,6 +59,7 @@ def Tele(ccx):
 }
 
 	response = requests.post('https://payments.braintree-api.com/graphql', headers=headers, json=json_data)
+
 
 	tok=(response.json()['data']['tokenizeCreditCard']['token'])
 	
