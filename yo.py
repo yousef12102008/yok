@@ -9,7 +9,8 @@ bot = telebot.TeleBot(token, parse_mode="HTML")
 
 # List of authorized user IDs
 authorized_users = [
-    '6309252183','1790070248','6157906511','1991857319'
+    '6309252183','1790070248','6157906511','1991857319', 
+    '7179224176'
 ]
 
 @bot.message_handler(commands=["start"])
