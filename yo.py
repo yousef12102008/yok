@@ -1,41 +1,51 @@
 import requests
-import telebot, time
+import telebot
+import time
 from telebot import types
 from mk import Tele
 import os
 
-token = '6848019028:AAGDVZ4MIlMKOL0pRjtjMOadz4qkf9cqarU'
+token = '6487569861:AAGt9xCKSwN_bCuLXEDVtJhjr-bAEd89HVc'
 bot = telebot.TeleBot(token, parse_mode="HTML")
 
-# List of authorized user IDs
-authorized_users = [
-    '6309252183','1790070248','6157906511','1991857319', 
-    '7179224176','5964228363','1991857319','6359238762'
-]
+# قائمة ID المسموح لهم
+allowed_ids = [ 6309252183, -1002127742561]
 
 @bot.message_handler(commands=["start"])
 def start(message):
-    if str(message.chat.id) not in authorized_users:
+    if message.chat.id not in allowed_ids:
         bot.reply_to(message, "You cannot use the bot. Contact developers to purchase a bot subscription @Af5AA")
         return
-    bot.reply_to(message, "جو الهكر يرحب بكم\nSend the file now \n ارسل الملف الان")
+    bot.reply_to(message, "Send the file now \n ارسل الملف الان")
+
+@bot.message_handler(commands=["stop"])
+def stop(message):
+    if message.chat.id in allowed_ids:
+        with open("stop.stop", "w") as file:
+            pass
+        bot.reply_to(message, "The bot has been stopped. ✅")
 
 @bot.message_handler(content_types=["document"])
 def main(message):
-    if str(message.chat.id) not in authorized_users:
+    if message.chat.id not in allowed_ids:
         bot.reply_to(message, "You cannot use the bot. Contact developers to purchase a bot subscription @Af5AA")
         return
+
     dd = 0
     live = 0
     ch = 0
-    ko = bot.reply_to(message, "Checking Your Cards...⌛").message_id
+    ko = (bot.reply_to(message, "Checking Your Cards...⌛").message_id)
     ee = bot.download_file(bot.get_file(message.document.file_id).file_path)
     with open("combo.txt", "wb") as w:
         w.write(ee)
+
     try:
         with open("combo.txt", 'r') as file:
             lino = file.readlines()
             total = len(lino)
+            if total > 200:
+                bot.reply_to(message, "You have exceeded the limit of 200 cards. You will be banned.")
+                return
             for cc in lino:
                 current_dir = os.getcwd()
                 for filename in os.listdir(current_dir):
@@ -48,29 +58,30 @@ def main(message):
                 except:
                     pass
                 try:
-                    bank = (data['bank']['name'])
+                    bank = data['bank']['name']
                 except:
-                    bank = ('𝒖𝒏𝒌𝒏𝒐𝒘𝒏')
+                    bank = '𝒖𝒏𝒌𝒏𝒐𝒘𝒏'
                 try:
-                    emj = (data['country']['emoji'])
+                    emj = data['country']['emoji']
                 except:
-                    emj = ('𝒖𝒏𝒌𝒏𝒐𝒘𝒏')
+                    emj = '𝒖𝒏𝒌𝒏𝒐𝒘𝒏'
                 try:
-                    cn = (data['country']['name'])
+                    cn = data['country']['name']
                 except:
-                    cn = ('𝒖𝒏𝒌𝒏𝒐𝒘𝒏')
+                    cn = '𝒖𝒏𝒌𝒏𝒐𝒘𝒏'
                 try:
-                    dicr = (data['scheme'])
+                    dicr = data['scheme']
                 except:
-                    dicr = ('𝒖𝒏𝒌𝒏𝒐𝒘𝒏')
+                    dicr = '𝒖𝒏𝒌𝒏𝒐𝒘𝒏'
                 try:
-                    typ = (data['type'])
+                    typ = data['type']
                 except:
-                    typ = ('𝒖𝒏𝒌𝒏𝒐𝒘𝒏')
+                    typ = '𝒖𝒏𝒌𝒏𝒐𝒘𝒏'
                 try:
-                    url = (data['bank']['url'])
+                    url = data['bank']['url']
                 except:
-                    url = ('𝒖𝒏𝒌𝒏𝒐𝒘𝒏')
+                    url = '𝒖𝒏𝒌𝒏𝒐𝒘𝒏'
+
                 try:
                     last = str(Tele(cc))
                 except Exception as e:
@@ -101,14 +112,14 @@ def main(message):
 ◆ 𝑼𝑹𝑳 ➜ {url}
 ━━━━━━━━━━━━━━━━━
 ◆ 𝑩𝒀: @Af5AA
-◆𝑷𝑹𝑶𝑿𝒀𝑺: 𝑷𝑹𝑶𝑿𝒀 𝑳𝑰𝑽𝑬 ✅ '''
+◆𝑷𝑹𝑶𝑿𝒀𝑺: 𝑷𝑹𝑶𝒙𝒀 𝑳𝑰𝑽𝑬 ✅ '''
                 print(last)
                 if "live" in last or 'Approved' in last:
                     live += 1
                     bot.reply_to(message, msg)
                 else:
                     dd += 1
-                time.sleep(15)
+                time.sleep(25)
     except Exception as e:
         print(e)
     bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='𝗕𝗘𝗘𝗡 𝗖𝗢𝗠𝗣𝗟𝗘𝗧𝗘𝗗 ✅\n𝗕𝗢𝗧 𝗕𝗬 ➜ @Af5AA')
