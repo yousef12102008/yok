@@ -140,6 +140,7 @@ def Tele(ccx):
 }
 
 	response = requests.post('https://ce4less.com/my-account/add-payment-method/', cookies=cookies, headers=headers, data=data)
+	text=(response.text)
 	import re
 	pattern = r"Status code \d+: (.+?)\s*</li>"
 	
@@ -155,5 +156,4 @@ def Tele(ccx):
 		else:
 			print(text)
 			return 'risk_threshold'
-			
 	
