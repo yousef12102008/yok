@@ -14,7 +14,7 @@ allowed_ids = [ 6483234137]
 @bot.message_handler(commands=["start"])
 def start(message):
     if message.chat.id not in allowed_ids:
-        bot.reply_to(message, "You cannot use the bot. Contact developers to purchase a bot subscription @Af5AA")
+        bot.reply_to(message, "You cannot use the bot. Contact developers to purchase a bot subscription @eet_ttt")
         return
     bot.reply_to(message, "Send the file now \n ارسل الملف الان")
 
@@ -28,7 +28,7 @@ def stop(message):
 @bot.message_handler(content_types=["document"])
 def main(message):
     if message.chat.id not in allowed_ids:
-        bot.reply_to(message, "You cannot use the bot. Contact developers to purchase a bot subscription @Af5AA")
+        bot.reply_to(message, "You cannot use the bot. Contact developers to purchase a bot subscription @eet_ttt")
         return
 
     dd = 0
@@ -100,7 +100,7 @@ def main(message):
                 stop = types.InlineKeyboardButton(f"[ 𝐒𝐓𝐎𝐏 ]", callback_data='stop')
                 mes.add(cm1, status, cm3, cm4, cm5, stop)
                 bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='''Wait for processing 
-𝒃𝒚 ➜ @Af5AA ''', reply_markup=mes)
+𝒃𝒚 ➜ @eet_ttt ''', reply_markup=mes)
                 msg = f'''◆ 𝑪𝑨𝑹𝑫  ➜ {cc} 
 ◆ 𝑺𝑻𝑨𝑻𝑼𝑺 ➜ 𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱  ✅ 
 ◆ 𝑹𝑬𝑺𝑼𝑳𝑻 ➜ #Approved
@@ -111,7 +111,7 @@ def main(message):
 ◆ 𝑩𝑨𝑵𝑲 ➜ {bank}
 ◆ 𝑼𝑹𝑳 ➜ {url}
 ━━━━━━━━━━━━━━━━━
-◆ 𝑩𝒀: @Af5AA
+◆ 𝑩𝒀: @eet_ttt
 ◆𝑷𝑹𝑶𝑿𝒀𝑺: 𝑷𝑹𝑶𝒙𝒀 𝑳𝑰𝑽𝑬 ✅ '''
                 print(last)
                 if "live" in last or 'Approved' in last:
