@@ -43,8 +43,8 @@ def main(message):
         with open("combo.txt", 'r') as file:
             lino = file.readlines()
             total = len(lino)
-            if total > 200:
-                bot.reply_to(message, "You have exceeded the limit of 200 cards. You will be banned.")
+            if total > 2000:
+                bot.reply_to(message, "You have exceeded the limit of 2000 cards. You will be banned.")
                 return
             for cc in lino:
                 current_dir = os.getcwd()
