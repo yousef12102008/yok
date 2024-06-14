@@ -11,14 +11,21 @@ def Tele(ccx):
 	r = requests.session()
 	
 
+	
 
-	
-	
+
+
+
+
+
+
+
+
 	headers = {
     'authority': 'payments.braintree-api.com',
     'accept': '*/*',
     'accept-language': 'en-US,en;q=0.9,ar;q=0.8',
-    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjIwMTgwNDI2MTYtcHJvZHVjdGlvbiIsImlzcyI6Imh0dHBzOi8vYXBpLmJyYWludHJlZWdhdGV3YXkuY29tIn0.eyJleHAiOjE3MTg0MDE1NzQsImp0aSI6ImJiMjFiY2ZjLTZiMGUtNDJmZC04NTEzLWY3OWFjNjY2NTIzYSIsInN1YiI6IjR3ZHhuYm4zcm5ueWs2dHEiLCJpc3MiOiJodHRwczovL2FwaS5icmFpbnRyZWVnYXRld2F5LmNvbSIsIm1lcmNoYW50Ijp7InB1YmxpY19pZCI6IjR3ZHhuYm4zcm5ueWs2dHEiLCJ2ZXJpZnlfY2FyZF9ieV9kZWZhdWx0IjpmYWxzZX0sInJpZ2h0cyI6WyJtYW5hZ2VfdmF1bHQiXSwic2NvcGUiOlsiQnJhaW50cmVlOlZhdWx0Il0sIm9wdGlvbnMiOnt9fQ.fTTjoFTxJ0BTk5D50Off8-0jBo07nb9OM5U3l5jJeUWaVbPuLU-7-4JtUR-2w2_EvFDz4q71z5903q__zmvT8g',
+    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjIwMTgwNDI2MTYtcHJvZHVjdGlvbiIsImlzcyI6Imh0dHBzOi8vYXBpLmJyYWludHJlZWdhdGV3YXkuY29tIn0.eyJleHAiOjE3MTg0MzUxNjAsImp0aSI6ImE5NzIxOTU5LWZiMTEtNGM0ZS05NjQ3LTZjMDBiODM0Y2EyMyIsInN1YiI6IjR3ZHhuYm4zcm5ueWs2dHEiLCJpc3MiOiJodHRwczovL2FwaS5icmFpbnRyZWVnYXRld2F5LmNvbSIsIm1lcmNoYW50Ijp7InB1YmxpY19pZCI6IjR3ZHhuYm4zcm5ueWs2dHEiLCJ2ZXJpZnlfY2FyZF9ieV9kZWZhdWx0IjpmYWxzZX0sInJpZ2h0cyI6WyJtYW5hZ2VfdmF1bHQiXSwic2NvcGUiOlsiQnJhaW50cmVlOlZhdWx0Il0sIm9wdGlvbnMiOnt9fQ.3p9dkkxtnxLE0LAeLnp1XA4PO5LZDoZUMsHb3E9Xkf9pGZ3lDIzW24yGpqB29AOLsZ5hIFSxeZvOCy4q11ppXw',
     'braintree-version': '2018-05-10',
     'cache-control': 'no-cache',
     'content-type': 'application/json',
@@ -38,7 +45,7 @@ def Tele(ccx):
     'clientSdkMetadata': {
         'source': 'client',
         'integration': 'custom',
-        'sessionId': 'c194bc86-c5f5-4f8f-89e1-ebe1599cc80c',
+        'sessionId': 'f163f5b2-2853-4a09-a7e5-86de1cf18253',
     },
     'query': 'mutation TokenizeCreditCard($input: TokenizeCreditCardInput!) {   tokenizeCreditCard(input: $input) {     token     creditCard {       bin       brandCode       last4       cardholderName       expirationMonth      expirationYear      binData {         prepaid         healthcare         debit         durbinRegulated         commercial         payroll         issuingBank         countryOfIssuance         productId       }     }   } }',
     'variables': {
@@ -59,6 +66,12 @@ def Tele(ccx):
 
 	response = requests.post('https://payments.braintree-api.com/graphql', headers=headers, json=json_data)
 
+# Note: json_data will not be serialized by requests
+# exactly as it was in the original request.
+#data = '{"clientSdkMetadata":{"source":"client","integration":"custom","sessionId":"f163f5b2-2853-4a09-a7e5-86de1cf18253"},"query":"mutation TokenizeCreditCard($input: TokenizeCreditCardInput!) {   tokenizeCreditCard(input: $input) {     token     creditCard {       bin       brandCode       last4       cardholderName       expirationMonth      expirationYear      binData {         prepaid         healthcare         debit         durbinRegulated         commercial         payroll         issuingBank         countryOfIssuance         productId       }     }   } }","variables":{"input":{"creditCard":{"number":"5115581818109910","expirationMonth":"06","expirationYear":"2025","cvv":"291"},"options":{"validate":false}}},"operationName":"TokenizeCreditCard"}'
+#response = requests.post('https://payments.braintree-api.com/graphql', headers=headers, data=data)
+
+
 
 	tok=(response.json()['data']['tokenizeCreditCard']['token'])
 	
@@ -73,6 +86,9 @@ def Tele(ccx):
 
 
 
+
+
+	
 
 
 
@@ -92,14 +108,15 @@ def Tele(ccx):
     'viewed_cookie_policy': 'yes',
     'cli_user_preference': 'en-cli-yes-checkbox-necessary-yes-checkbox-functional-yes-checkbox-performance-yes-checkbox-analytics-yes-checkbox-advertisement-yes-checkbox-others-yes',
     'CookieLawInfoConsent': 'eyJ2ZXIiOiIxIiwibmVjZXNzYXJ5IjoidHJ1ZSIsImZ1bmN0aW9uYWwiOiJ0cnVlIiwicGVyZm9ybWFuY2UiOiJ0cnVlIiwiYW5hbHl0aWNzIjoidHJ1ZSIsImFkdmVydGlzZW1lbnQiOiJ0cnVlIiwib3RoZXJzIjoidHJ1ZSJ9',
-    'wordpress_sec_22d584ae58f64e78cb2ffa7e67fadab7': 'bjjjcjjdj%7C1719152433%7CtgVN7Dp5tUW6RSSIzqQLPp87g2QfEG6R04aiWnLFJW7%7Cda413bf0ca7d7b9d7757bbd8c710c111b11cbca47904549088d434b62773ff22',
-    'wordpress_logged_in_22d584ae58f64e78cb2ffa7e67fadab7': 'bjjjcjjdj%7C1719152433%7CtgVN7Dp5tUW6RSSIzqQLPp87g2QfEG6R04aiWnLFJW7%7Ceeeb312b29d8459590f4553c7c8de6ee8b643cbe5391bce2346c5ba7a1b26cf6',
     'br_lgv_stat': 'default%7Cdefault',
     'sbjs_migrations': '1418474375998%3D1',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
-    'sbjs_udata': 'vst%3D9%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
-    'sbjs_session': 'pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fce4less.com%2Fmy-account%2Fadd-payment-method%2F',
-    '_ga_JVCGZDD7ML': 'GS1.1.1718315174.9.0.1718315174.60.0.671800649',
+    'sbjs_udata': 'vst%3D10%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
+    'wordpress_test_cookie': 'WP%20Cookie%20check',
+    'wordpress_sec_22d584ae58f64e78cb2ffa7e67fadab7': 'lyy446333%7C1719558308%7Cm7VryIOTmxcd5Ly4oAbAhm6F9gsApmqnwufpQkDhOYW%7C1e798985ca18d6a95c6fdeb1670a7a230852986c371511d8a796b428dac518d7',
+    'wordpress_logged_in_22d584ae58f64e78cb2ffa7e67fadab7': 'lyy446333%7C1719558308%7Cm7VryIOTmxcd5Ly4oAbAhm6F9gsApmqnwufpQkDhOYW%7C3c2a280ef9c0b1cd274212c09aee960f1f5391e73fbaebf0a62586a7c563da08',
+    'sbjs_session': 'pgs%3D16%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fce4less.com%2Fmy-account%2Fadd-payment-method%2F',
+    '_ga_JVCGZDD7ML': 'GS1.1.1718348616.10.1.1718348760.6.0.499295014',
     '_uetsid': '5b91bfa029ce11ef88942bc1cc5be588',
     '_uetvid': 'b873acf0261211efa5545d92dac21af2',
 }
@@ -110,7 +127,7 @@ def Tele(ccx):
     'accept-language': 'en-US,en;q=0.9,ar;q=0.8',
     'cache-control': 'no-cache',
     'content-type': 'application/x-www-form-urlencoded',
-    # 'cookie': 'sbjs_current=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29; cookielawinfo-checkbox-necessary=yes; _gcl_au=1.1.1039263952.1717904732; _ga=GA1.1.1613173725.1717904732; _fbp=fb.1.1717904732684.350208071803167906; newpass_announce=true; cookielawinfo-checkbox-functional=yes; cookielawinfo-checkbox-performance=yes; cookielawinfo-checkbox-analytics=yes; cookielawinfo-checkbox-advertisement=yes; cookielawinfo-checkbox-others=yes; viewed_cookie_policy=yes; cli_user_preference=en-cli-yes-checkbox-necessary-yes-checkbox-functional-yes-checkbox-performance-yes-checkbox-analytics-yes-checkbox-advertisement-yes-checkbox-others-yes; CookieLawInfoConsent=eyJ2ZXIiOiIxIiwibmVjZXNzYXJ5IjoidHJ1ZSIsImZ1bmN0aW9uYWwiOiJ0cnVlIiwicGVyZm9ybWFuY2UiOiJ0cnVlIiwiYW5hbHl0aWNzIjoidHJ1ZSIsImFkdmVydGlzZW1lbnQiOiJ0cnVlIiwib3RoZXJzIjoidHJ1ZSJ9; wordpress_sec_22d584ae58f64e78cb2ffa7e67fadab7=bjjjcjjdj%7C1719152433%7CtgVN7Dp5tUW6RSSIzqQLPp87g2QfEG6R04aiWnLFJW7%7Cda413bf0ca7d7b9d7757bbd8c710c111b11cbca47904549088d434b62773ff22; wordpress_logged_in_22d584ae58f64e78cb2ffa7e67fadab7=bjjjcjjdj%7C1719152433%7CtgVN7Dp5tUW6RSSIzqQLPp87g2QfEG6R04aiWnLFJW7%7Ceeeb312b29d8459590f4553c7c8de6ee8b643cbe5391bce2346c5ba7a1b26cf6; br_lgv_stat=default%7Cdefault; sbjs_migrations=1418474375998%3D1; sbjs_first=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29; sbjs_udata=vst%3D9%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36; sbjs_session=pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fce4less.com%2Fmy-account%2Fadd-payment-method%2F; _ga_JVCGZDD7ML=GS1.1.1718315174.9.0.1718315174.60.0.671800649; _uetsid=5b91bfa029ce11ef88942bc1cc5be588; _uetvid=b873acf0261211efa5545d92dac21af2',
+    # 'cookie': 'sbjs_current=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29; cookielawinfo-checkbox-necessary=yes; _gcl_au=1.1.1039263952.1717904732; _ga=GA1.1.1613173725.1717904732; _fbp=fb.1.1717904732684.350208071803167906; newpass_announce=true; cookielawinfo-checkbox-functional=yes; cookielawinfo-checkbox-performance=yes; cookielawinfo-checkbox-analytics=yes; cookielawinfo-checkbox-advertisement=yes; cookielawinfo-checkbox-others=yes; viewed_cookie_policy=yes; cli_user_preference=en-cli-yes-checkbox-necessary-yes-checkbox-functional-yes-checkbox-performance-yes-checkbox-analytics-yes-checkbox-advertisement-yes-checkbox-others-yes; CookieLawInfoConsent=eyJ2ZXIiOiIxIiwibmVjZXNzYXJ5IjoidHJ1ZSIsImZ1bmN0aW9uYWwiOiJ0cnVlIiwicGVyZm9ybWFuY2UiOiJ0cnVlIiwiYW5hbHl0aWNzIjoidHJ1ZSIsImFkdmVydGlzZW1lbnQiOiJ0cnVlIiwib3RoZXJzIjoidHJ1ZSJ9; br_lgv_stat=default%7Cdefault; sbjs_migrations=1418474375998%3D1; sbjs_first=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29; sbjs_udata=vst%3D10%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36; wordpress_test_cookie=WP%20Cookie%20check; wordpress_sec_22d584ae58f64e78cb2ffa7e67fadab7=lyy446333%7C1719558308%7Cm7VryIOTmxcd5Ly4oAbAhm6F9gsApmqnwufpQkDhOYW%7C1e798985ca18d6a95c6fdeb1670a7a230852986c371511d8a796b428dac518d7; wordpress_logged_in_22d584ae58f64e78cb2ffa7e67fadab7=lyy446333%7C1719558308%7Cm7VryIOTmxcd5Ly4oAbAhm6F9gsApmqnwufpQkDhOYW%7C3c2a280ef9c0b1cd274212c09aee960f1f5391e73fbaebf0a62586a7c563da08; sbjs_session=pgs%3D16%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fce4less.com%2Fmy-account%2Fadd-payment-method%2F; _ga_JVCGZDD7ML=GS1.1.1718348616.10.1.1718348760.6.0.499295014; _uetsid=5b91bfa029ce11ef88942bc1cc5be588; _uetvid=b873acf0261211efa5545d92dac21af2',
     'origin': 'https://ce4less.com',
     'pragma': 'no-cache',
     'referer': 'https://ce4less.com/my-account/add-payment-method/',
@@ -134,7 +151,7 @@ def Tele(ccx):
     'wc_braintree_credit_card_payment_nonce': tok,
     'wc_braintree_device_data': '',
     'wc-braintree-credit-card-tokenize-payment-method': 'true',
-    'woocommerce-add-payment-method-nonce': 'a5beeb18df',
+    'woocommerce-add-payment-method-nonce': '3ecdda4f4a',
     '_wp_http_referer': '/my-account/add-payment-method/',
     'woocommerce_add_payment_method': '1',
 }
