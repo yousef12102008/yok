@@ -5,11 +5,11 @@ from telebot import types
 from mk import Tele
 import os
 
-token = '6698970599:AAH1JaLqM8W1kyI8r-gbPryBneoMr14GG58'
+token = '6487569861:AAGt9xCKSwN_bCuLXEDVtJhjr-bAEd89HVc'
 bot = telebot.TeleBot(token, parse_mode="HTML")
 
 # قائمة ID المسموح لهم
-allowed_ids = [ 6483234137, 1406949595, -1002151315382, 1887442837, 6309252183]
+allowed_ids = [ 6309252183,6522495478 ]
 
 @bot.message_handler(commands=["start"])
 def start(message):
